@@ -21,9 +21,16 @@ namespace OnStore
     /// </summary>
     public partial class MainWindow : Window
     {
+        public List<Product> _products;
+        public List<Product> Products { get; set; }
+        
+  
 
-        public List<Product> Products = new List<Product>
+        public MainWindow()
         {
+            _products = new List<Product>()
+            {
+
             new Product
             {
                 Name="Cola",
@@ -58,20 +65,21 @@ namespace OnStore
             {
                 Name="FastFoodMix",
                  Price=12.25,
-                  ImagePath="Images/Cips.jpg"
+                  ImagePath="Images/FastFood.jpg"
             }
-        };
-
-        public MainWindow()
-        {
-            InitializeComponent();
-            Listbox.ItemsSource = Products;
+              };
+            
             DataContext = this;
+            Products = _products;
+            InitializeComponent();
+            //Listbox.ItemsSource = Products;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+
+
+        private void AddBTn_Click(object sender, RoutedEventArgs e)
         {
-            EditListBox.ItemsSource = Listbox.ItemsSource;
+            
         }
     }
 }

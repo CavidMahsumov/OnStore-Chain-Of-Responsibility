@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OnStore"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="1300">
+        Title="MainWindow" Height="700" Width="1300">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="7*"/>
@@ -13,11 +13,13 @@
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="2">
             <ListBox x:Name="EditListBox">
-                
+                <Image>
+                    
+                </Image>
             </ListBox>
-            
+
         </Grid>
-            
+
         <Grid  Grid.Column="0" Background="#8571F6">
             <Grid.RowDefinitions>
                 <RowDefinition/>
@@ -26,7 +28,7 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*" />
                 <ColumnDefinition  Width="7*"/>
-                
+
             </Grid.ColumnDefinitions>
             <Grid Grid.Row="1" Grid.Column="0" Background="#8571F6">
                 <Grid.RowDefinitions>
@@ -37,7 +39,7 @@
                     <Image
                         Source="Images/Karzina.png"
                         >
-                        
+
                     </Image>
                 </Grid>
             </Grid>
@@ -48,77 +50,95 @@
                          Text="Search..."
                          
                          >
-                    
+
                 </TextBox>
             </Grid>
 
             <Grid Grid.Row="0" Grid.Column="0">
                 <Image
-                    Source="Images/OnlineStore.jpg"
+                    Source="Images/OnlineStore.png"
                     Height="70"
                     Width="70"
                     >
-                    
+
                 </Image>
-                
+
             </Grid>
-            
+
             <Grid Grid.Row="1" Grid.Column="1" Background="#8571F6">
 
-    
-                <ListBox  Name="Listbox" >
+
+                <ListBox  Name="Listbox" ItemsSource="{Binding Products}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" >
 
                     <ListBox.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <UniformGrid></UniformGrid>
-                </ItemsPanelTemplate>
-            </ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel></WrapPanel>
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <Grid>
- 
-                                <WrapPanel >
-                                    
-                                    <Image 
-                                    Source="{Binding ImagePath}"
-                                        Width="70"
-                                        Height="70"
-                                        
-                                    >
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="10*"></RowDefinition>
+                                    <RowDefinition Height="4*"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Border Grid.Row="0" x:Name="border1" Width="200" Height="250" Background="Transparent" BorderBrush="#8571F6" BorderThickness="5" Margin="5,25,5,5">
 
-                                    </Image>
 
-                                    <Label Content="{Binding Name}"  FontSize="15" FontFamily="Comic Sans MS">
-                                        
-                                    </Label>
-                                    <Label Content="{Binding Price}"  FontSize="15" FontFamily="Comic Sans MS" HorizontalAlignment="Center">
-                                        
-                                    </Label>
-                                    <Button Width="30" Height="30"
-                                            Content="+"
-                                            FontSize="20"
-                                            HorizontalAlignment="Right"
-                                            Click="Button_Click"
-                                            >
-                                        
-                                    </Button>
-                                  
 
-                                </WrapPanel>
-                                                            
-                       
+                                    <Grid>
+
+
+
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="10*"></RowDefinition>
+                                            <RowDefinition Height="3*"></RowDefinition>
+                                        </Grid.RowDefinitions>
+
+
+
+                                        <StackPanel Grid.Row="0" >
+                                            <Image x:Name="Image" Width="150" Height="150" Margin="0,8,0,0"  Source="{Binding ImagePath}"></Image>
+                                            <Label Width="200" Height="5" Background="#8571F6" Margin="0,4,0,0"></Label>
+                                        </StackPanel>
+
+                                                
+
+                                        <StackPanel Grid.Row="1" Orientation="Vertical" >
+                                            <TextBlock x:Name="ProductNameText" Text="{Binding Path=Name}" FontSize="14" Foreground="#FF25BFBF" FontWeight="Bold" Width="180" Height="20" Margin="5,3,0,0" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+                                            <TextBlock  x:Name="ProductPriceText" Text="{Binding Path=Price}" FontSize="14" Foreground="#FF25BFBF" FontWeight="Bold" Width="180" Height="20" Margin="5,3,0,0" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+                                        </StackPanel>
+                                        <WrapPanel  Grid.Row="1">
+
+                                            <Button Margin="130,20,0,0" x:Name="AddBTn" Content="+" FontSize="15" Width="30" Height="30" HorizontalAlignment="Left"
+                                                    Click="AddBTn_Click"
+                                                    ></Button>
+                                        </WrapPanel>
+
+
+
+                                    </Grid>
+
+
+
+                                </Border>
+
+
+
+
+
                             </Grid>
-                            
+
                         </DataTemplate>
                     </ListBox.ItemTemplate>
-                    
+
                 </ListBox>
-               
-                
+
+
             </Grid>
-            
+
         </Grid>
 
-   
+
     </Grid>
 </Window>
