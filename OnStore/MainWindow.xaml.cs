@@ -54,7 +54,7 @@ namespace OnStore
             },
             new Product
             {
-                Name="Cips",
+                Name="Chips",
                  Price=2.40,
                   ImagePath="Images/Pringless.png",
                   Description="Pringless Cips"
@@ -127,9 +127,14 @@ namespace OnStore
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (Product.ImagePath != null)
+            if (Product == null)
+            {
+                return;
+            }
+            if (ProductImage.Source != null)
             {
                 Product.ImagePath = ProductImage.Source.ToString();
+
             }
             Product.Name = nameTxtBox.Text;
             Product.Price = Double.Parse(PriceTxtBox.Text);
