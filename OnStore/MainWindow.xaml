@@ -5,19 +5,51 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OnStore"
         mc:Ignorable="d"
-        Title="MainWindow" Height="700" Width="1300">
+        Title="MainWindow" Height="800" Width="1300">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="7*"/>
             <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
-        <Grid Grid.Column="2">
-            <ListBox x:Name="EditListBox">
-                <Image>
-                    
-                </Image>
-            </ListBox>
+        <Grid Grid.Column="2" AllowDrop="True" DragDrop.Drop="Grid_Drop" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="0.8*"/>
 
+            </Grid.RowDefinitions>
+            <Border Grid.Row="0"
+                    BorderBrush="#8571F6"
+                    BorderThickness="5"
+                    Background="WhiteSmoke"
+                    Margin="10"
+                    MouseUp="Border_MouseUp"
+                    AllowDrop="True"
+                    >
+                <Image x:Name="ProductImage"
+                      AllowDrop="True"
+                       Drop="ProductImage_Drop"
+                       MouseDown="ProductImage_MouseDown"
+                       DragEnter="ProductImage_DragEnter"
+                       MouseLeftButtonDown="ProductImage_MouseLeftButtonDown"
+                       
+                       >
+
+                </Image>
+
+            </Border>
+            <StackPanel Grid.Row="1">
+                <Label FontSize="30" Content="Name" FontFamily="Comic Sans MS"></Label>
+                <TextBox x:Name="nameTxtBox" Width="370" FontSize="30" Height="60" FontFamily="Comic Sans MS"  BorderThickness="5" BorderBrush="#8571F6" ></TextBox>
+                <Label FontSize="30" Content="Price" FontFamily="Comic Sans MS"></Label>
+                <TextBox x:Name="PriceTxtBox" Width="370" Height="60" FontSize="30" BorderThickness="5"  FontFamily="Comic Sans MS" BorderBrush="#8571F6" ></TextBox>
+                <Label FontSize="30" Content="Description" FontFamily="Comic Sans MS"></Label>
+                <TextBox x:Name="DescriptionTxtBox" Width="370" Height="55" FontSize="30" FontFamily="Comic Sans MS" BorderThickness="5" BorderBrush="#8571F6" ></TextBox>
+            </StackPanel>
+            <Border Grid.Row="3" BorderBrush="#8571F6" BorderThickness="10" CornerRadius="20">
+                <Button Grid.Row="3"  Background="#8571F6" BorderThickness="0" FontSize="30" FontFamily="Comic Sans MS" Click="Button_Click">Update</Button>
+
+            </Border>
         </Grid>
 
         <Grid  Grid.Column="0" Background="#8571F6">
@@ -44,14 +76,19 @@
                 </Grid>
             </Grid>
             <Grid Grid.Row="0" Grid.Column="1">
-                <TextBox x:Name="SearchTxtBox" Width="300" Height="40"
+                <Border CornerRadius="20" BorderThickness="0" >
+                    <TextBox x:Name="SearchTxtBox" Width="300" Height="40"
                          FontSize="20"
                          FontFamily="Comic Sans MS"
-                         Text="Search..."
+                         
+                         BorderThickness="0" TextChanged="SearchTxtBox_TextChanged"
                          
                          >
 
-                </TextBox>
+                    </TextBox>
+
+                </Border>
+                
             </Grid>
 
             <Grid Grid.Row="0" Grid.Column="0">
@@ -102,7 +139,7 @@
                                             <Label Width="200" Height="5" Background="#8571F6" Margin="0,4,0,0"></Label>
                                         </StackPanel>
 
-                                                
+
 
                                         <StackPanel Grid.Row="1" Orientation="Vertical" >
                                             <TextBlock x:Name="ProductNameText" Text="{Binding Path=Name}" FontSize="14" Foreground="#FF25BFBF" FontWeight="Bold" Width="180" Height="20" Margin="5,3,0,0" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>

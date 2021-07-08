@@ -55,6 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Extension\BitmapImageExtension.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -96,16 +97,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Cola.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\Karzina.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\download.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\Cips.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Pizza.png" />
@@ -118,6 +113,15 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\OnlineStore.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Pringless.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Cola.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Bread.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
