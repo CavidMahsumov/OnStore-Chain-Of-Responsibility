@@ -61,12 +61,21 @@ namespace OnStore.View
 
             Helper.Userlist = new ObservableCollection<User>();
 
+            User user1 = new User
+            {
+                Name = NameTxtBox.Text,
+                Email = EmailTxtBox.Text,
+                Password = PasswordTxtBox.Text,
+                StepsOfChain = stepofchain,
+                Surname = SurnameTxtBox.Text
 
-            new_User_List.Add(new User { Name = NameTxtBox.Text, Surname = SurnameTxtBox.Text, Password = PasswordTxtBox.Text, Email = EmailTxtBox.Text, StepsOfChain = stepofchain });
+            };
+            
+            new_User_List.Add(user1);
 
 
 
-            Helper.Userlist.Add(User);
+            Helper.Userlist.Add(user1);
 
                 
 

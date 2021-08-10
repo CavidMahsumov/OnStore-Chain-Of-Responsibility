@@ -87,7 +87,7 @@ namespace OnStore.View
             }
 
 
-            if (!User_List.Any(x => x.Email == emailtxtBox.Text) || !User_List.Any(x => x.Password == passwordtxtpox.Text))
+            if (!List.Any(x => x.Email == emailtxtBox.Text) || !List.Any(x => x.Password == passwordtxtpox.Text))
             {
 
                 IChain chain = new SignUpChain();
