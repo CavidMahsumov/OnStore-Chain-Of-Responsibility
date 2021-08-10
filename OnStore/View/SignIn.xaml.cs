@@ -59,7 +59,8 @@ namespace OnStore.View
             {
                 if (item.Email == emailtxtBox.Text && item.Password == passwordtxtpox.Text)
                 {
-                    MessageBox.Show($"Welcome livE store {item.Name}");
+                    MainWindow mainWindow = new MainWindow();
+                    mainWindow.ShowDialog();
 
                     singinclick = true;
 
