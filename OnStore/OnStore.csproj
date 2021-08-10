@@ -55,7 +55,20 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Chain Of Responsibility\IChain.cs" />
+    <Compile Include="Chain Of Responsibility\OrderChain.cs" />
+    <Compile Include="Chain Of Responsibility\SignInChain.cs" />
+    <Compile Include="Chain Of Responsibility\SignUpChain.cs" />
     <Compile Include="Extension\BitmapImageExtension.cs" />
+    <Compile Include="Extension\Helper.cs" />
+    <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="View\SignIn.xaml.cs">
+      <DependentUpon>SignIn.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SignUp.xaml.cs">
+      <DependentUpon>SignUp.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -68,6 +81,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\SignIn.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SignUp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\Product.cs" />
@@ -122,6 +143,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Bread.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\backgroundLoginScene-02.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

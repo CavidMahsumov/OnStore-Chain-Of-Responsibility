@@ -1,7 +1,11 @@
 ﻿using Microsoft.Win32;
+using OnStore.Chain_Of_Responsibility;
+using OnStore.Extension;
 using OnStore.Models;
+using OnStore.View;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -23,9 +27,44 @@ namespace OnStore
     /// </summary>
     public partial class MainWindow : Window
     {
-        string m="";
+       
+        // public SingIn_UC SingIn_UCs { get; set; }
+
+        public SignIn SingInViewModel_UCs { get; set; }
+        public ObservableCollection<User> _User_List { get; set; }
+        public ObservableCollection<User> User_List { get { return _User_List; } set { _User_List = value; } }
+
+        public ObservableCollection<User> new_User_List = new ObservableCollection<User>();
+
+        private User _User;
+
+        public User User { get { return _User; } set { _User = value; } }
+        public ObservableCollection<Product> _Products_List { get; set; }
+        public ObservableCollection<Product> Products_List { get { return _Products_List; } set { _Products_List = value; } }
+
+        public ObservableCollection<Product> new_Products_List = new ObservableCollection<Product>();
+
+        private Product _product;
+
+        public Product Product { get { return _product; } set { _product = value; } }
+
+
+        public ObservableCollection<Order> _Order_List { get; set; }
+        public ObservableCollection<Order> Order_List { get { return _Order_List; } set { _Order_List = value; } }
+
+        public ObservableCollection<Order> new_Order_List = new ObservableCollection<Order>();
+
+        private Order _Order;
+
+        public Order Order { get { return _Order; } set { _Order = value; } }
+
+
+        string stepofchain = "Order Chain";
+
+
+        string m ="";
         public static Image global_sender;
-        public Product Product { get; set; }
+        
         public List<Product> Products { get; set; }
         public List<Product> ProductsCopy { get; set; }
 
@@ -33,6 +72,7 @@ namespace OnStore
 
         public MainWindow()
         {
+            Helper.mainWindow = this;
             Products = new List<Product>()
             {
 
@@ -94,7 +134,31 @@ namespace OnStore
 
         private void AddBTn_Click(object sender, RoutedEventArgs e)
         {
-            if(Listbox.SelectedItem is Product item)
+            SignUp signUp = new SignUp();
+            User = new User();
+
+
+
+
+
+            if (!Helper.Userlist.Any())
+            {
+                IChain chain = new SignUpChain();
+                IChain chain2 = new SignInChain();
+                IChain chain3 = new OrderChain();
+
+                chain.setNextChain(chain2);
+                chain2.setNextChain(chain3);
+
+                User User = new User {Email=signUp.EmailTxtBox.Text,Password=signUp.PasswordTxtBox.Text };
+                chain3.Handle(User);
+
+            }
+
+         
+
+
+            if (Listbox.SelectedItem is Product item)
             {
                 ProductImage.Source = new BitmapImage(new Uri(item.ImagePath, UriKind.RelativeOrAbsolute));
                 Product = item;
