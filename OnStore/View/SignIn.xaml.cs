@@ -25,15 +25,13 @@ namespace OnStore.View
     {
         
 
-        public MainWindow OrderViewModel_UCs { get; set; }
+        public MainWindow MainWindow { get; set; }
 
 
         public bool singinclick = false;
 
         public ObservableCollection<User> _User_List { get; set; }
-        public ObservableCollection<User> User_List { get { return _User_List; } set { _User_List = value; } }
 
-        public ObservableCollection<User> new_User_List = new ObservableCollection<User>();
        public ObservableCollection<User> List { get; set; } = new ObservableCollection<User>();
 
 

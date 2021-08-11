@@ -24,27 +24,9 @@ namespace OnStore.View
     /// </summary>
     public partial class SignUp : UserControl
     {
-        
-
-        public MainWindow OrderViewModel_UCs { get; set; }
-
-        
-
-        public ObservableCollection<User> _User_List { get; set; }
-        public ObservableCollection<User> User_List { get { return _User_List; } set { _User_List = value; } }
-
-        public ObservableCollection<User> new_User_List = new ObservableCollection<User>();
-
+        public ObservableCollection<User> UserList = new ObservableCollection<User>();
         public User User { get; set; }
-
-
-
-
-
-
-
         string stepofchain;
-
         public bool singupclick = false;
         public SignUp()
         {
@@ -70,31 +52,41 @@ namespace OnStore.View
                 Surname = SurnameTxtBox.Text
 
             };
-            
-            new_User_List.Add(user1);
-
-
-
+            UserList.Add(user1);
             Helper.Userlist.Add(user1);
+            singupclick = true;
+            IChain chain = new SignUpChain();
+            IChain chain2 = new SignInChain();
+            IChain chain3 = new OrderChain();
 
-                
+            chain.setNextChain(chain2);
+            chain2.setNextChain(chain3);
 
-                singupclick = true;
-
-            
-
-                IChain chain = new SignUpChain();
-                IChain chain2 = new SignInChain();
-                IChain chain3 = new OrderChain();
-
-                chain.setNextChain(chain2);
-                chain2.setNextChain(chain3);
-
-                User User1 = new User { Name= NameTxtBox.Text, Surname=SurnameTxtBox.Text, Password= PasswordTxtBox.Text, Email=EmailTxtBox.Text, StepsOfChain= stepofchain };
-                chain.Handle(User1);
+            User User1 = new User { Name= NameTxtBox.Text, Surname=SurnameTxtBox.Text, Password= PasswordTxtBox.Text, Email=EmailTxtBox.Text, StepsOfChain= stepofchain };
+            chain.Handle(User1);
             Helper.Signin.MainGrid.Children.RemoveAt(1);
 
 
+        }
+
+        private void NameTxtBox_MouseEnter(object sender, MouseEventArgs e)
+        {
+            NameTxtBox.Text = string.Empty;
+        }
+
+        private void SurnameTxtBox_MouseEnter(object sender, MouseEventArgs e)
+        {
+            SurnameTxtBox.Text = string.Empty;
+        }
+
+        private void EmailTxtBox_MouseEnter(object sender, MouseEventArgs e)
+        {
+            EmailTxtBox.Text = string.Empty;
+        }
+
+        private void PasswordTxtBox_MouseEnter(object sender, MouseEventArgs e)
+        {
+            PasswordTxtBox.Text = string.Empty;
         }
     }
 }
